@@ -23,6 +23,8 @@ void setup() {
 }
 
 void loop() {
+  digitalWrite(pumpPin, LOW); // Iniciar com a bomba de água desligada
+  
   int moistureLevel = analogRead(moistureSensorPin); //Ler a umidade do solo
   Serial.print("Nível de umidade do solo:");
   Serial.println(moistureLevel);
@@ -40,7 +42,8 @@ void loop() {
   
   else if (moistureLevel < wetThreshold) {
     Serial.println("O solo está MUITO MOLHADO! Não é ncessário regar por um bom tempo.\n");
-    
+    digitalWrite(pumpPin, LOW);
+
     delay(10000); // Delay maior, pois tem muita umidade no solo
   }
   
